@@ -152,7 +152,60 @@ function sendMessage(){
 function escapeText(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function updateClock(){document.getElementById('clock').textContent=new Date().toLocaleTimeString('ru-RU')}
 setInterval(updateClock,1000);updateClock();
-overlay.addEventListener('click',e=>{if(e.target===overlay)closeModule()});
+overlay.addEventListener('click',e=>{if(e.target===overlay)closeModule()};
+ // TITAN JARVIS VOICE SYSTEM
+const oldOpenModule = openModule;
+
+openModule = function(name) {
+  oldOpenModule(name);
+
+  if (name === 'jarvis') {
+    const voice = document.createElement('button');
+    voice.innerHTML = '🎙️ ГОВОРИТЬ';
+    voice.style.cssText =
+      'margin-top:12px;padding:14px;background:#008dcc;color:white;border:0;border-radius:10px;width:100%;font-size:16px';
+
+    voice.onclick = function() {
+      const Speech = window.SpeechRecognition ||
+                     window.webkitSpeechRecognition;
+
+      if (!Speech) {
+        alert('Голосовой ввод не поддерживается этим браузером.');
+        return;
+      }
+
+      const recognition = new Speech();
+      recognition.lang = 'ru-RU';
+
+      recognition.onresult = function(event) {
+        document.getElementById('message').value =
+          event.results[0][0].transcript;
+        sendMessage();
+      };
+
+      recognition.start();
+    };
+
+    body.appendChild(voice);
+  }
+};
+
+const oldSendMessage = sendMessage;
+
+sendMessage = function() {
+  oldSendMessage();
+
+  const chat = document.getElementById('chat');
+  const text = chat.innerText;
+  const position = text.lastIndexOf('JARVIS:');
+
+  if (position !== -1 && 'speechSynthesis' in window) {
+    const answer = text.substring(position + 7);
+    const speech = new SpeechSynthesisUtterance(answer);
+    speech.lang = 'ru-RU';
+    speechSynthesis.speak(speech);
+  }
+};
 </script>
 </body>
 </html>
