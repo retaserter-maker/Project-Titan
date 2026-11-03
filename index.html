@@ -4,362 +4,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#050b14">
+<meta name="theme-color" content="#030914">
 <title>PROJECT TITAN</title>
-
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: #050b14;
-  color: #e5f3ff;
-  font-family: Arial, sans-serif;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 0%, #12385a55, transparent 45%),
-    linear-gradient(#0b1a2b22 1px, transparent 1px),
-    linear-gradient(90deg, #0b1a2b22 1px, transparent 1px);
-  background-size: auto, 35px 35px, 35px 35px;
-  pointer-events: none;
-  z-index: -1;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  border-bottom: 1px solid #16456a;
-  background: #07111de8;
-}
-
-.logo {
-  font-size: 23px;
-  font-weight: 900;
-  letter-spacing: 3px;
-  color: #38bdf8;
-  text-shadow: 0 0 15px #0ea5e9;
-}
-
-.status {
-  color: #4ade80;
-  font-size: 11px;
-  letter-spacing: 1px;
-}
-
-main {
-  max-width: 1100px;
-  margin: auto;
-  padding: 30px 18px;
-}
-
-.welcome {
-  text-align: center;
-  padding: 35px 10px;
-  animation: appear 1s ease;
-}
-
-.welcome h1 {
-  font-size: clamp(30px, 8vw, 55px);
-  letter-spacing: 5px;
-  color: #7dd3fc;
-  text-shadow: 0 0 25px #0284c7;
-}
-
-.welcome p {
-  color: #8baac4;
-  margin-top: 12px;
-  font-size: 13px;
-  letter-spacing: 2px;
-}
-
-.orb {
-  width: 115px;
-  height: 115px;
-  margin: 25px auto;
-  border-radius: 50%;
-  border: 2px solid #38bdf8;
-  box-shadow: 0 0 25px #0284c7,
-              inset 0 0 25px #0284c7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 38px;
-  animation: pulse 3s infinite;
-}
-
-.clock {
-  color: #38bdf8;
-  font-size: 19px;
-  margin-top: 18px;
-  letter-spacing: 2px;
-}
-
-.section-title {
-  font-size: 15px;
-  color: #7dd3fc;
-  letter-spacing: 2px;
-  margin: 25px 0 15px;
-}
-
-.modules {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-}
-
-.module {
-  border: 1px solid #16456a;
-  border-radius: 14px;
-  padding: 22px 14px;
-  background: linear-gradient(145deg, #102238, #07111d);
-  text-align: center;
-  cursor: pointer;
-  transition: .3s;
-  color: white;
-  min-height: 175px;
-}
-
-.module:hover {
-  transform: translateY(-5px);
-  border-color: #38bdf8;
-  box-shadow: 0 0 22px #0284c755;
-}
-
-.module .icon {
-  font-size: 35px;
-  margin-bottom: 15px;
-}
-
-.module h2 {
-  font-size: 16px;
-  color: #7dd3fc;
-  margin-bottom: 10px;
-}
-
-.module p {
-  font-size: 12px;
-  line-height: 1.5;
-  color: #91a9bf;
-}
-
-.system {
-  margin-top: 25px;
-  padding: 18px;
-  background: #0b1929;
-  border: 1px solid #16456a;
-  border-radius: 12px;
-}
-
-.system h3 {
-  color: #38bdf8;
-  margin-bottom: 13px;
-  font-size: 14px;
-}
-
-.system p {
-  color: #9db4c9;
-  font-size: 12px;
-  margin: 8px 0;
-}
-
-.online {
-  color: #4ade80;
-}
-
-footer {
-  text-align: center;
-  padding: 30px 10px;
-  color: #526b82;
-  font-size: 11px;
-}
-
-#message {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: #000b;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  z-index: 10;
-}
-
-.dialog {
-  background: #0b1929;
-  border: 1px solid #38bdf8;
-  border-radius: 15px;
-  padding: 25px;
-  text-align: center;
-  max-width: 330px;
-  width: 100%;
-  box-shadow: 0 0 30px #0284c755;
-}
-
-.dialog h2 {
-  color: #38bdf8;
-  margin-bottom: 12px;
-}
-
-.dialog p {
-  color: #a7bfd4;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.dialog button {
-  margin-top: 20px;
-  background: #0284c7;
-  color: white;
-  border: none;
-  border-radius: 7px;
-  padding: 11px 25px;
-  font-size: 14px;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    box-shadow: 0 0 15px #0284c7,
-                inset 0 0 15px #0284c7;
-  }
-  50% {
-    box-shadow: 0 0 35px #0ea5e9,
-                inset 0 0 30px #0284c7;
-  }
-}
-
-@keyframes appear {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media(max-width: 600px) {
-  .modules {
-    grid-template-columns: 1fr;
-  }
-
-  .module {
-    min-height: 145px;
-  }
-
-  header {
-    padding: 16px;
-  }
-
-  .logo {
-    font-size: 19px;
-  }
-}
+:root{--blue:#00c8ff;--violet:#8055ff;--bg:#030914;--panel:#0a1728;--text:#eaf7ff;--muted:#829bb4}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 50% 0%,#10264b 0%,#030914 48%,#01040a 100%);color:var(--text);font-family:Arial,sans-serif;min-height:100vh}
+button{font:inherit;cursor:pointer}
+header{height:68px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #16416a;background:#050d1bea;position:sticky;top:0;z-index:5;backdrop-filter:blur(14px)}
+.logo{font-size:23px;font-weight:900;letter-spacing:5px;color:var(--blue);text-shadow:0 0 18px var(--blue)}
+.status{font-size:11px;color:#52f5a0;letter-spacing:1px}
+main{max-width:1000px;margin:auto;padding:25px 17px 70px}
+.hero{text-align:center;padding:48px 8px 35px;position:relative;overflow:hidden}
+.eyebrow{font-size:11px;letter-spacing:4px;color:var(--blue)}
+h1{font-size:clamp(38px,10vw,76px);letter-spacing:5px;margin:16px 0;background:linear-gradient(90deg,#fff,#00c8ff,#8c6aff);background-clip:text;color:transparent;text-shadow:0 0 35px #007dff44}
+.subtitle{color:var(--muted);letter-spacing:3px;font-size:12px}
+.orb{width:145px;height:145px;margin:32px auto;border:1px solid #00c8ff;border-radius:50%;display:grid;place-items:center;position:relative;box-shadow:0 0 25px #00aaff66,inset 0 0 28px #007bff33;animation:pulse 3s infinite}
+.orb:before,.orb:after{content:"";position:absolute;inset:12px;border:1px solid #477bff;border-radius:50%;animation:spin 12s linear infinite}
+.orb:after{inset:-9px;border-color:#8c6aff55;border-style:dashed;animation:spin 20s linear infinite reverse}
+.orb span{font-size:48px;color:#fff;text-shadow:0 0 25px var(--blue)}
+@keyframes pulse{50%{box-shadow:0 0 48px #00aaffaa,inset 0 0 38px #007bff66}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.clock{font-size:23px;letter-spacing:4px;color:var(--blue);margin-top:12px}
+.section-title{font-size:13px;letter-spacing:3px;color:#8adfff;margin:30px 0 16px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.module{background:linear-gradient(145deg,#10243a,#07111f);border:1px solid #19466a;border-radius:17px;padding:23px 15px;text-align:center;min-height:180px;position:relative;overflow:hidden;transition:.25s}
+.module:before{content:"";position:absolute;top:0;left:-100%;width:70%;height:1px;background:var(--blue);box-shadow:0 0 18px var(--blue);transition:.5s}
+.module:active{transform:scale(.97);border-color:var(--blue)}
+.module:active:before{left:100%}
+.module .emoji{font-size:36px;filter:drop-shadow(0 0 10px #00baff)}
+.module h2{font-size:17px;color:#79dfff;margin:15px 0 9px}
+.module p{font-size:12px;line-height:1.6;color:var(--muted);margin:0}
+.open{display:inline-block;margin-top:14px;color:var(--blue);font-size:11px;letter-spacing:2px}
+.panel{margin-top:25px;padding:20px;border:1px solid #17466b;border-radius:17px;background:#081525cc}
+.panel h3{font-size:13px;letter-spacing:2px;color:var(--blue);margin:0 0 16px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.metric{background:#0d2034;border-radius:10px;padding:14px 5px;text-align:center}
+.metric strong{display:block;font-size:20px;color:#5ddcff}
+.metric small{font-size:9px;color:var(--muted)}
+.footer{text-align:center;color:#52677e;font-size:10px;letter-spacing:2px;margin-top:35px}
+.overlay{display:none;position:fixed;inset:0;background:#000c;z-index:10;align-items:center;justify-content:center;padding:18px}
+.overlay.show{display:flex}
+.dialog{width:100%;max-width:440px;background:#09182a;border:1px solid var(--blue);border-radius:18px;padding:23px;box-shadow:0 0 40px #008cff44}
+.dialog h2{color:var(--blue);margin-top:0}
+.dialog p{color:#b4c8dc;line-height:1.6;font-size:14px}
+.close{background:#087db8;color:white;border:0;border-radius:9px;padding:12px 25px;margin-top:10px}
+.chat{height:180px;overflow:auto;background:#030b16;border:1px solid #17334d;border-radius:10px;padding:12px;font-size:13px;color:#c5e8ff;margin:12px 0}
+.chat-input{display:flex;gap:7px}
+.chat-input input{min-width:0;flex:1;background:#030b16;border:1px solid #28516e;color:white;border-radius:8px;padding:12px}
+.chat-input button{background:#087db8;color:white;border:0;border-radius:8px;padding:0 13px}
+@media(max-width:540px){.grid{grid-template-columns:1fr}.module{min-height:150px}.hero{padding-top:35px}.metrics{gap:6px}.metric strong{font-size:17px}}
 </style>
 </head>
-
 <body>
-
 <header>
-  <div class="logo">TITAN</div>
-  <div class="status">● СИСТЕМА АКТИВНА</div>
+ <div class="logo">TITAN</div>
+ <div class="status">● SYSTEM ACTIVE</div>
 </header>
-
 <main>
+ <section class="hero">
+  <div class="eyebrow">NEXT GENERATION DIGITAL SYSTEM</div>
+  <h1>PROJECT TITAN</h1>
+  <div class="subtitle">DREAM · CREATE · EXPLORE</div>
+  <div class="orb"><span>✦</span></div>
+  <div class="subtitle">ЦЕНТР УПРАВЛЕНИЯ СИСТЕМОЙ</div>
+  <div class="clock" id="clock">00:00:00</div>
+ </section>
 
-  <section class="welcome">
-    <h1>PROJECT TITAN</h1>
-    <p>СИСТЕМА ЦИФРОВОГО УПРАВЛЕНИЯ</p>
+ <div class="section-title">▰ ГЛАВНЫЕ МОДУЛИ</div>
+ <section class="grid">
+  <button class="module" onclick="openModule('jarvis')">
+   <div class="emoji">🤖</div>
+   <h2>JARVIS AI</h2>
+   <p>ИИ-помощник, чат и команды</p>
+   <span class="open">ЗАПУСТИТЬ →</span>
+  </button>
+  <button class="module" onclick="openModule('earth')">
+   <div class="emoji">🌍</div>
+   <h2>DIGITAL EARTH</h2>
+   <p>Цифровая модель нашей планеты</p>
+   <span class="open">ИССЛЕДОВАТЬ →</span>
+  </button>
+  <button class="module" onclick="openModule('racer')">
+   <div class="emoji">🏎️</div>
+   <h2>SPEED RACER</h2>
+   <p>Гонки, скорость и рекорды</p>
+   <span class="open">НА СТАРТ →</span>
+  </button>
+  <button class="module" onclick="openModule('core')">
+   <div class="emoji">⚙️</div>
+   <h2>TITAN CORE</h2>
+   <p>Настройки и состояние системы</p>
+   <span class="open">ОТКРЫТЬ →</span>
+  </button>
+ </section>
 
-    <div class="orb">✦</div>
-
-    <p>ДОБРО ПОЖАЛОВАТЬ В TITAN</p>
-    <div class="clock" id="clock">00:00:00</div>
-  </section>
-
-  <h2 class="section-title">ГЛАВНЫЕ МОДУЛИ</h2>
-
-  <section class="modules">
-
-    <div class="module" onclick="openModule('JARVIS AI')">
-      <div class="icon">🤖</div>
-      <h2>JARVIS AI</h2>
-      <p>Искусственный интеллект и голосовой помощник</p>
-    </div>
-
-    <div class="module" onclick="openModule('DIGITAL EARTH')">
-      <div class="icon">🌍</div>
-      <h2>DIGITAL EARTH</h2>
-      <p>Интерактивная цифровая модель Земли</p>
-    </div>
-
-    <div class="module" onclick="openModule('SPEED RACER')">
-      <div class="icon">🏎️</div>
-      <h2>SPEED RACER</h2>
-      <p>Гонки, автомобили и соревнования</p>
-    </div>
-
-  </section>
-
-  <section class="system">
-    <h3>МОНИТОРИНГ TITAN CORE</h3>
-    <p>Состояние системы: <span class="online">ONLINE</span></p>
-    <p>Главные модули: 3</p>
-    <p>Версия системы: 1.0.0</p>
-    <p>Платформа: Web / Android</p>
-  </section>
-
+ <section class="panel">
+  <h3>◈ TITAN CORE · МОНИТОРИНГ</h3>
+  <div class="metrics">
+   <div class="metric"><strong>ONLINE</strong><small>СИСТЕМА</small></div>
+   <div class="metric"><strong>04</strong><small>МОДУЛЯ</small></div>
+   <div class="metric"><strong>100%</strong><small>ГОТОВНОСТЬ ИНТЕРФЕЙСА</small></div>
+  </div>
+ </section>
+ <div class="footer">PROJECT TITAN · BUILT FOR THE FUTURE</div>
 </main>
 
-<footer>
-  PROJECT TITAN © 2026<br>
-  THE FUTURE STARTS HERE
-</footer>
-
-<div id="message">
-  <div class="dialog">
-    <h2 id="dialogTitle">TITAN</h2>
-    <p id="dialogText">Модуль готовится к запуску.</p>
-    <button onclick="closeModule()">ЗАКРЫТЬ</button>
-  </div>
+<div class="overlay" id="overlay">
+ <div class="dialog">
+  <h2 id="dialogTitle">TITAN</h2>
+  <div id="dialogBody"></div>
+  <button class="close" onclick="closeModule()">ЗАКРЫТЬ</button>
+ </div>
 </div>
 
 <script>
-function updateClock() {
-  const now = new Date();
+const overlay=document.getElementById('overlay');
+const title=document.getElementById('dialogTitle');
+const body=document.getElementById('dialogBody');
 
-  document.getElementById("clock").textContent =
-    now.toLocaleTimeString("ru-RU");
+function openModule(name){
+ overlay.classList.add('show');
+ if(name==='jarvis'){
+  title.textContent='🤖 JARVIS AI';
+  body.innerHTML='<p>Привет! Я демонстрационный помощник TITAN. Напиши мне сообщение.</p><div class="chat" id="chat">JARVIS: Система готова к общению.</div><div class="chat-input"><input id="message" placeholder="Напиши сообщение..."><button onclick="sendMessage()">➤</button></div>';
+ }else if(name==='earth'){
+  title.textContent='🌍 DIGITAL EARTH';
+  body.innerHTML='<p>Цифровая Земля — следующий этап проекта.</p><div style="font-size:75px;text-align:center;filter:drop-shadow(0 0 20px #00baff)">🌐</div><p>Здесь появится интерактивный глобус с городами и странами.</p>';
+ }else if(name==='racer'){
+  title.textContent='🏎️ SPEED RACER';
+  body.innerHTML='<p>Гоночный модуль TITAN.</p><div style="font-size:75px;text-align:center">🏁</div><p>Здесь появится игра с сенсорным управлением и таблицей рекордов.</p>';
+ }else{
+  title.textContent='⚙️ TITAN CORE';
+  body.innerHTML='<p>Состояние системы: ONLINE</p><p>Интерфейс: активен</p><p>Модули: 4</p><p>Версия: TITAN 2.0</p>';
+ }
 }
-
-setInterval(updateClock, 1000);
-updateClock();
-
-function openModule(name) {
-  document.getElementById("dialogTitle").textContent = name;
-  document.getElementById("dialogText").textContent =
-    "Модуль " + name +
-    " зарегистрирован. Полноценный запуск появится в следующих обновлениях PROJECT TITAN.";
-
-  document.getElementById("message").style.display = "flex";
+function closeModule(){overlay.classList.remove('show')}
+function sendMessage(){
+ const input=document.getElementById('message');
+ const chat=document.getElementById('chat');
+ if(!input||!input.value.trim())return;
+ const message=input.value.trim();
+ chat.innerHTML+='<br><br>ТЫ: '+escapeText(message)+'<br><br>JARVIS: Я пока работаю в демонстрационном режиме. Настоящий ИИ подключим отдельным безопасным сервером.';
+ input.value='';
+ chat.scrollTop=chat.scrollHeight;
 }
-
-function closeModule() {
-  document.getElementById("message").style.display = "none";
-}
+function escapeText(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function updateClock(){document.getElementById('clock').textContent=new Date().toLocaleTimeString('ru-RU')}
+setInterval(updateClock,1000);updateClock();
+overlay.addEventListener('click',e=>{if(e.target===overlay)closeModule()});
 </script>
-
 </body>
 </html>
