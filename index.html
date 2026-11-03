@@ -4,207 +4,452 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#030914">
-<title>PROJECT TITAN</title>
+<meta name="theme-color" content="#050914">
+<title>TITAN 2.0</title>
 <style>
-:root{--blue:#00c8ff;--violet:#8055ff;--bg:#030914;--panel:#0a1728;--text:#eaf7ff;--muted:#829bb4}
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at 50% 0%,#10264b 0%,#030914 48%,#01040a 100%);color:var(--text);font-family:Arial,sans-serif;min-height:100vh}
-button{font:inherit;cursor:pointer}
-header{height:68px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #16416a;background:#050d1bea;position:sticky;top:0;z-index:5;backdrop-filter:blur(14px)}
-.logo{font-size:23px;font-weight:900;letter-spacing:5px;color:var(--blue);text-shadow:0 0 18px var(--blue)}
-.status{font-size:11px;color:#52f5a0;letter-spacing:1px}
-main{max-width:1000px;margin:auto;padding:25px 17px 70px}
-.hero{text-align:center;padding:48px 8px 35px;position:relative;overflow:hidden}
-.eyebrow{font-size:11px;letter-spacing:4px;color:var(--blue)}
-h1{font-size:clamp(38px,10vw,76px);letter-spacing:5px;margin:16px 0;background:linear-gradient(90deg,#fff,#00c8ff,#8c6aff);background-clip:text;color:transparent;text-shadow:0 0 35px #007dff44}
-.subtitle{color:var(--muted);letter-spacing:3px;font-size:12px}
-.orb{width:145px;height:145px;margin:32px auto;border:1px solid #00c8ff;border-radius:50%;display:grid;place-items:center;position:relative;box-shadow:0 0 25px #00aaff66,inset 0 0 28px #007bff33;animation:pulse 3s infinite}
-.orb:before,.orb:after{content:"";position:absolute;inset:12px;border:1px solid #477bff;border-radius:50%;animation:spin 12s linear infinite}
-.orb:after{inset:-9px;border-color:#8c6aff55;border-style:dashed;animation:spin 20s linear infinite reverse}
-.orb span{font-size:48px;color:#fff;text-shadow:0 0 25px var(--blue)}
-@keyframes pulse{50%{box-shadow:0 0 48px #00aaffaa,inset 0 0 38px #007bff66}}
-@keyframes spin{to{transform:rotate(360deg)}}
-.clock{font-size:23px;letter-spacing:4px;color:var(--blue);margin-top:12px}
-.section-title{font-size:13px;letter-spacing:3px;color:#8adfff;margin:30px 0 16px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.module{background:linear-gradient(145deg,#10243a,#07111f);border:1px solid #19466a;border-radius:17px;padding:23px 15px;text-align:center;min-height:180px;position:relative;overflow:hidden;transition:.25s}
-.module:before{content:"";position:absolute;top:0;left:-100%;width:70%;height:1px;background:var(--blue);box-shadow:0 0 18px var(--blue);transition:.5s}
-.module:active{transform:scale(.97);border-color:var(--blue)}
-.module:active:before{left:100%}
-.module .emoji{font-size:36px;filter:drop-shadow(0 0 10px #00baff)}
-.module h2{font-size:17px;color:#79dfff;margin:15px 0 9px}
-.module p{font-size:12px;line-height:1.6;color:var(--muted);margin:0}
-.open{display:inline-block;margin-top:14px;color:var(--blue);font-size:11px;letter-spacing:2px}
-.panel{margin-top:25px;padding:20px;border:1px solid #17466b;border-radius:17px;background:#081525cc}
-.panel h3{font-size:13px;letter-spacing:2px;color:var(--blue);margin:0 0 16px}
-.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
-.metric{background:#0d2034;border-radius:10px;padding:14px 5px;text-align:center}
-.metric strong{display:block;font-size:20px;color:#5ddcff}
-.metric small{font-size:9px;color:var(--muted)}
-.footer{text-align:center;color:#52677e;font-size:10px;letter-spacing:2px;margin-top:35px}
-.overlay{display:none;position:fixed;inset:0;background:#000c;z-index:10;align-items:center;justify-content:center;padding:18px}
-.overlay.show{display:flex}
-.dialog{width:100%;max-width:440px;background:#09182a;border:1px solid var(--blue);border-radius:18px;padding:23px;box-shadow:0 0 40px #008cff44}
-.dialog h2{color:var(--blue);margin-top:0}
-.dialog p{color:#b4c8dc;line-height:1.6;font-size:14px}
-.close{background:#087db8;color:white;border:0;border-radius:9px;padding:12px 25px;margin-top:10px}
-.chat{height:180px;overflow:auto;background:#030b16;border:1px solid #17334d;border-radius:10px;padding:12px;font-size:13px;color:#c5e8ff;margin:12px 0}
-.chat-input{display:flex;gap:7px}
-.chat-input input{min-width:0;flex:1;background:#030b16;border:1px solid #28516e;color:white;border-radius:8px;padding:12px}
-.chat-input button{background:#087db8;color:white;border:0;border-radius:8px;padding:0 13px}
-@media(max-width:540px){.grid{grid-template-columns:1fr}.module{min-height:150px}.hero{padding-top:35px}.metrics{gap:6px}.metric strong{font-size:17px}}
+:root {
+  --bg:#050914;
+  --panel:#0b1425;
+  --cyan:#00eaff;
+  --blue:#168cff;
+  --text:#eafaff;
+  --muted:#8da9bd;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  min-height:100vh;
+  color:var(--text);
+  background:
+    radial-gradient(ellipse at 50% 0%,#10264b 0%,transparent 55%),
+    var(--bg);
+  font-family:Arial,sans-serif;
+}
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 6%;
+  border-bottom:1px solid #16334c;
+}
+.logo {
+  color:var(--cyan);
+  font-size:23px;
+  font-weight:bold;
+  letter-spacing:5px;
+  text-shadow:0 0 15px var(--cyan);
+}
+.status {
+  color:#54ffbd;
+  font-size:12px;
+}
+main {
+  width:min(1000px,92%);
+  margin:auto;
+  padding:35px 0 60px;
+}
+.hero { text-align:center; padding:20px 0 35px; }
+.hero h1 {
+  font-size:clamp(35px,8vw,65px);
+  letter-spacing:8px;
+  margin:10px 0;
+  text-shadow:0 0 25px #008cff;
+}
+.hero p { color:var(--muted); }
+.orb {
+  width:150px;
+  height:150px;
+  margin:25px auto;
+  border-radius:50%;
+  background:radial-gradient(circle at 35% 30%,#fff 0%,#70faff 8%,#008cff 35%,#07142c 70%);
+  box-shadow:0 0 25px #00cfff,0 0 65px #006dff, inset 0 0 25px white;
+  animation:pulse 3s infinite ease-in-out;
+}
+@keyframes pulse {
+  0%,100% { transform:scale(.96); box-shadow:0 0 25px #00cfff,0 0 55px #006dff; }
+  50% { transform:scale(1.06); box-shadow:0 0 40px #00eaff,0 0 90px #006dff; }
+}
+.clock {
+  font-size:30px;
+  color:var(--cyan);
+  letter-spacing:4px;
+  font-weight:bold;
+}
+.date { color:var(--muted); margin-top:8px; }
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:15px;
+  margin-top:25px;
+}
+.card {
+  background:linear-gradient(145deg,#101f35,#08111f);
+  border:1px solid #164365;
+  border-radius:15px;
+  padding:22px;
+  min-height:155px;
+  transition:.2s;
+}
+.card:hover {
+  transform:translateY(-4px);
+  border-color:var(--cyan);
+  box-shadow:0 0 20px #00cfff30;
+}
+.card .symbol { font-size:28px; }
+.card h3 { color:var(--cyan); letter-spacing:2px; }
+.card p { color:var(--muted); font-size:13px; line-height:1.5; }
+button {
+  border:1px solid var(--cyan);
+  color:var(--cyan);
+  background:#071728;
+  padding:11px 17px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:bold;
+}
+button:hover { background:#06334a; box-shadow:0 0 12px #00cfff55; }
+.card button { margin-top:8px; }
+footer {
+  text-align:center;
+  color:#58758b;
+  font-size:12px;
+  padding:25px;
+  border-top:1px solid #16334c;
+}
+#overlay {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000b;
+  z-index:10;
+  padding:18px;
+  align-items:center;
+  justify-content:center;
+}
+#overlay.active { display:flex; }
+.modal {
+  width:min(550px,100%);
+  max-height:85vh;
+  overflow:auto;
+  background:#0a1728;
+  border:1px solid var(--cyan);
+  border-radius:16px;
+  padding:22px;
+  box-shadow:0 0 35px #00cfff40;
+}
+.modal-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+.modal h2 { color:var(--cyan); }
+#chat {
+  height:230px;
+  overflow:auto;
+  padding:12px;
+  background:#050d19;
+  border:1px solid #183b55;
+  border-radius:9px;
+  margin:15px 0;
+}
+.message { margin:9px 0; line-height:1.5; overflow-wrap:anywhere; }
+.message b { color:var(--cyan); }
+.chat-row { display:flex; gap:8px; }
+.chat-row input {
+  flex:1;
+  min-width:0;
+  background:#050d19;
+  border:1px solid #24506c;
+  color:white;
+  padding:12px;
+  border-radius:8px;
+}
+.info {
+  padding:14px;
+  background:#071321;
+  border:1px solid #173d58;
+  border-radius:9px;
+  margin:12px 0;
+  line-height:1.6;
+}
+#gameArea {
+  background:#050d19;
+  border:1px solid #24506c;
+  border-radius:10px;
+  padding:18px;
+  text-align:center;
+}
+#gameNumber {
+  font-size:45px;
+  color:var(--cyan);
+  margin:15px;
+}
+.small { color:var(--muted); font-size:12px; }
 </style>
 </head>
 <body>
+
 <header>
- <div class="logo">TITAN</div>
- <div class="status">● SYSTEM ACTIVE</div>
+  <div class="logo">TITAN</div>
+  <div class="status">● SYSTEM ONLINE</div>
 </header>
+
 <main>
- <section class="hero">
-  <div class="eyebrow">NEXT GENERATION DIGITAL SYSTEM</div>
-  <h1>PROJECT TITAN</h1>
-  <div class="subtitle">DREAM · CREATE · EXPLORE</div>
-  <div class="orb"><span>✦</span></div>
-  <div class="subtitle">ЦЕНТР УПРАВЛЕНИЯ СИСТЕМОЙ</div>
-  <div class="clock" id="clock">00:00:00</div>
- </section>
+  <section class="hero">
+    <div class="orb"></div>
+    <h1>TITAN 2.0</h1>
+    <p>YOUR DIGITAL UNIVERSE</p>
+    <div class="clock" id="clock">--:--:--</div>
+    <div class="date" id="date">Загрузка даты...</div>
+  </section>
 
- <div class="section-title">▰ ГЛАВНЫЕ МОДУЛИ</div>
- <section class="grid">
-  <button class="module" onclick="openModule('jarvis')">
-   <div class="emoji">🤖</div>
-   <h2>JARVIS AI</h2>
-   <p>ИИ-помощник, чат и команды</p>
-   <span class="open">ЗАПУСТИТЬ →</span>
-  </button>
-  <button class="module" onclick="openModule('earth')">
-   <div class="emoji">🌍</div>
-   <h2>DIGITAL EARTH</h2>
-   <p>Цифровая модель нашей планеты</p>
-   <span class="open">ИССЛЕДОВАТЬ →</span>
-  </button>
-  <button class="module" onclick="openModule('racer')">
-   <div class="emoji">🏎️</div>
-   <h2>SPEED RACER</h2>
-   <p>Гонки, скорость и рекорды</p>
-   <span class="open">НА СТАРТ →</span>
-  </button>
-  <button class="module" onclick="openModule('core')">
-   <div class="emoji">⚙️</div>
-   <h2>TITAN CORE</h2>
-   <p>Настройки и состояние системы</p>
-   <span class="open">ОТКРЫТЬ →</span>
-  </button>
- </section>
+  <section class="grid">
+    <div class="card">
+      <div class="symbol">🤖</div>
+      <h3>JARVIS AI</h3>
+      <p>Интеллектуальный помощник TITAN.</p>
+      <button onclick="openModule('jarvis')">ОТКРЫТЬ</button>
+    </div>
 
- <section class="panel">
-  <h3>◈ TITAN CORE · МОНИТОРИНГ</h3>
-  <div class="metrics">
-   <div class="metric"><strong>ONLINE</strong><small>СИСТЕМА</small></div>
-   <div class="metric"><strong>04</strong><small>МОДУЛЯ</small></div>
-   <div class="metric"><strong>100%</strong><small>ГОТОВНОСТЬ ИНТЕРФЕЙСА</small></div>
-  </div>
- </section>
- <div class="footer">PROJECT TITAN · BUILT FOR THE FUTURE</div>
+    <div class="card">
+      <div class="symbol">🌍</div>
+      <h3>DIGITAL EARTH</h3>
+      <p>Информационная панель цифровой Земли.</p>
+      <button onclick="openModule('earth')">ОТКРЫТЬ</button>
+    </div>
+
+    <div class="card">
+      <div class="symbol">🏎️</div>
+      <h3>SPEED RACER</h3>
+      <p>Мини-игра на скорость реакции.</p>
+      <button onclick="openModule('racer')">ИГРАТЬ</button>
+    </div>
+
+    <div class="card">
+      <div class="symbol">⚡</div>
+      <h3>TITAN CORE</h3>
+      <p>Состояние и информация системы.</p>
+      <button onclick="openModule('core')">ОТКРЫТЬ</button>
+    </div>
+  </section>
 </main>
 
-<div class="overlay" id="overlay">
- <div class="dialog">
-  <h2 id="dialogTitle">TITAN</h2>
-  <div id="dialogBody"></div>
-  <button class="close" onclick="closeModule()">ЗАКРЫТЬ</button>
- </div>
+<footer>
+  TITAN 2.0 · DIGITAL SYSTEM · ALL SYSTEMS READY
+</footer>
+
+<div id="overlay" onclick="closeOutside(event)">
+  <div class="modal">
+    <div class="modal-head">
+      <h2 id="modalTitle">TITAN MODULE</h2>
+      <button onclick="closeModule()">✕</button>
+    </div>
+    <div id="modalContent"></div>
+  </div>
 </div>
 
 <script>
-const overlay=document.getElementById('overlay');
-const title=document.getElementById('dialogTitle');
-const body=document.getElementById('dialogBody');
+"use strict";
 
-function openModule(name){
- overlay.classList.add('show');
- if(name==='jarvis'){
-  title.textContent='🤖 JARVIS AI';
-  body.innerHTML='<p>Привет! Я демонстрационный помощник TITAN. Напиши мне сообщение.</p><div class="chat" id="chat">JARVIS: Система готова к общению.</div><div class="chat-input"><input id="message" placeholder="Напиши сообщение..."><button onclick="sendMessage()">➤</button></div>';
- }else if(name==='earth'){
-  title.textContent='🌍 DIGITAL EARTH';
-  body.innerHTML='<p>Цифровая Земля — следующий этап проекта.</p><div style="font-size:75px;text-align:center;filter:drop-shadow(0 0 20px #00baff)">🌐</div><p>Здесь появится интерактивный глобус с городами и странами.</p>';
- }else if(name==='racer'){
-  title.textContent='🏎️ SPEED RACER';
-  body.innerHTML='<p>Гоночный модуль TITAN.</p><div style="font-size:75px;text-align:center">🏁</div><p>Здесь появится игра с сенсорным управлением и таблицей рекордов.</p>';
- }else{
-  title.textContent='⚙️ TITAN CORE';
-  body.innerHTML='<p>Состояние системы: ONLINE</p><p>Интерфейс: активен</p><p>Модули: 4</p><p>Версия: TITAN 2.0</p>';
- }
-}
-function closeModule(){overlay.classList.remove('show')}
-function sendMessage(){
- const input=document.getElementById('message');
- const chat=document.getElementById('chat');
- if(!input||!input.value.trim())return;
- const message=input.value.trim();
- chat.innerHTML+='<br><br>ТЫ: '+escapeText(message)+'<br><br>JARVIS: Я пока работаю в демонстрационном режиме. Настоящий ИИ подключим отдельным безопасным сервером.';
- input.value='';
- chat.scrollTop=chat.scrollHeight;
-}
-function escapeText(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function updateClock(){document.getElementById('clock').textContent=new Date().toLocaleTimeString('ru-RU')}
-setInterval(updateClock,1000);updateClock();
-overlay.addEventListener('click',e=>{if(e.target===overlay)closeModule()};
- // TITAN JARVIS VOICE SYSTEM
-const oldOpenModule = openModule;
+function updateClock() {
+  const now = new Date();
+  const clock = document.getElementById("clock");
+  const date = document.getElementById("date");
 
-openModule = function(name) {
-  oldOpenModule(name);
-
-  if (name === 'jarvis') {
-    const voice = document.createElement('button');
-    voice.innerHTML = '🎙️ ГОВОРИТЬ';
-    voice.style.cssText =
-      'margin-top:12px;padding:14px;background:#008dcc;color:white;border:0;border-radius:10px;width:100%;font-size:16px';
-
-    voice.onclick = function() {
-      const Speech = window.SpeechRecognition ||
-                     window.webkitSpeechRecognition;
-
-      if (!Speech) {
-        alert('Голосовой ввод не поддерживается этим браузером.');
-        return;
-      }
-
-      const recognition = new Speech();
-      recognition.lang = 'ru-RU';
-
-      recognition.onresult = function(event) {
-        document.getElementById('message').value =
-          event.results[0][0].transcript;
-        sendMessage();
-      };
-
-      recognition.start();
-    };
-
-    body.appendChild(voice);
+  if (clock) {
+    clock.textContent = now.toLocaleTimeString("ru-RU", {
+      hour12:false
+    });
   }
-};
 
-const oldSendMessage = sendMessage;
+  if (date) {
+    date.textContent = now.toLocaleDateString("ru-RU", {
+      weekday:"long",
+      day:"numeric",
+      month:"long",
+      year:"numeric"
+    });
+  }
+}
 
-sendMessage = function() {
-  oldSendMessage();
+updateClock();
+setInterval(updateClock,1000);
 
-  const chat = document.getElementById('chat');
-  const text = chat.innerText;
-  const position = text.lastIndexOf('JARVIS:');
+const overlay = document.getElementById("overlay");
+const modalTitle = document.getElementById("modalTitle");
+const modalContent = document.getElementById("modalContent");
 
-  if (position !== -1 && 'speechSynthesis' in window) {
-    const answer = text.substring(position + 7);
-    const speech = new SpeechSynthesisUtterance(answer);
-    speech.lang = 'ru-RU';
-    speechSynthesis.speak(speech);
- 
+function openModule(name) {
+  overlay.classList.add("active");
+
+  if (name === "jarvis") {
+    modalTitle.textContent = "JARVIS AI";
+    modalContent.innerHTML = `
+      <p class="small">TITAN ASSISTANT · DEMO MODE</p>
+      <div id="chat">
+        <div class="message"><b>JARVIS:</b> Привет! Я JARVIS. Чем могу помочь?</div>
+      </div>
+      <div class="chat-row">
+        <input id="chatInput" type="text" placeholder="Напиши сообщение..."
+          onkeydown="if(event.key==='Enter') sendMessage()">
+        <button onclick="sendMessage()">➤</button>
+      </div>
+      <p class="small">Это демонстрационный чат, не подключённый к настоящему ИИ.</p>
+    `;
+  }
+
+  else if (name === "earth") {
+    modalTitle.textContent = "DIGITAL EARTH";
+    modalContent.innerHTML = `
+      <div class="info">
+        🌍 <b>ЦИФРОВАЯ ЗЕМЛЯ</b><br>
+        Информационный модуль TITAN.
+      </div>
+      <div class="info">🛰️ Статус: интерфейс активен</div>
+      <div class="info">🌐 Режим: демонстрационный</div>
+      <div class="info">📡 Подключение к спутникам: не настроено</div>
+    `;
+  }
+
+  else if (name === "racer") {
+    modalTitle.textContent = "SPEED RACER";
+    modalContent.innerHTML = `
+      <p>Нажми кнопку, когда появится сигнал!</p>
+      <div id="gameArea">
+        <div id="gameNumber">READY</div>
+        <p id="gameStatus">Нажми «Начать»</p>
+        <button id="gameButton" onclick="startGame()">НАЧАТЬ</button>
+      </div>
+      <p class="small">Мини-игра на реакцию. Не нажимай до зелёного сигнала.</p>
+    `;
+  }
+
+  else if (name === "core") {
+    modalTitle.textContent = "TITAN CORE";
+    modalContent.innerHTML = `
+      <div class="info">⚡ Ядро TITAN: <b>АКТИВНО</b></div>
+      <div class="info">🕒 Системные часы: <b>РАБОТАЮТ</b></div>
+      <div class="info">💠 Интерфейс: <b>ONLINE</b></div>
+      <div class="info">🧠 JARVIS: <b>DEMO MODE</b></div>
+      <div class="info">🌐 Сервер ИИ: <b>НЕ ПОДКЛЮЧЁН</b></div>
+    `;
+  }
+}
+
+function closeModule() {
+  overlay.classList.remove("active");
+}
+
+function closeOutside(event) {
+  if (event.target === overlay) closeModule();
+}
+
+function escapeText(value) {
+  return String(value).replace(/[&<>"']/g,function(char) {
+    return {
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#39;"
+    }[char];
+  });
+}
+
+function sendMessage() {
+  const input = document.getElementById("chatInput");
+  const chat = document.getElementById("chat");
+
+  if (!input || !chat) return;
+
+  const message = input.value.trim();
+  if (!message) return;
+
+  chat.innerHTML +=
+    '<div class="message"><b>ТЫ:</b> ' +
+    escapeText(message) + '</div>';
+
+  const lower = message.toLowerCase();
+  let answer = "Я пока работаю в демонстрационном режиме. Но я готов развиваться вместе с TITAN.";
+
+  if (lower.includes("привет") || lower.includes("здравств")) {
+    answer = "Привет! Рад видеть тебя в системе TITAN.";
+  } else if (lower.includes("как дела")) {
+    answer = "Все системные модули интерфейса готовы к работе!";
+  } else if (lower.includes("титан") || lower.includes("titan")) {
+    answer = "TITAN 2.0 — твоя цифровая система. Мы можем продолжать её улучшать!";
+  } else if (lower.includes("время") || lower.includes("час")) {
+    answer = "Текущее время: " + new Date().toLocaleTimeString("ru-RU");
+  } else if (lower.includes("помощь")) {
+    answer = "Я могу приветствовать тебя, сообщить время и рассказать о системе TITAN.";
+  }
+
+  chat.innerHTML +=
+    '<div class="message"><b>JARVIS:</b> ' +
+    escapeText(answer) + '</div>';
+
+  input.value = "";
+  chat.scrollTop = chat.scrollHeight;
+}
+
+let gameTimer = null;
+let gameStart = 0;
+let gameReady = false;
+
+function startGame() {
+  if (gameTimer) clearTimeout(gameTimer);
+
+  const number = document.getElementById("gameNumber");
+  const status = document.getElementById("gameStatus");
+  const button = document.getElementById("gameButton");
+
+  if (!number || !status || !button) return;
+
+  gameReady = false;
+  number.textContent = "…";
+  status.textContent = "Жди зелёного сигнала...";
+  button.textContent = "ЖДУ...";
+  button.onclick = false;
+
+  const delay = 1500 + Math.random() * 3000;
+
+  gameTimer = setTimeout(function() {
+    gameReady = true;
+    gameStart = Date.now();
+    number.textContent = "GO!";
+    number.style.color = "#54ffbd";
+    status.textContent = "ЖМИ СЕЙЧАС!";
+    button.textContent = "НАЖАТЬ!";
+    button.onclick = finishGame;
+  },delay);
+}
+
+function finishGame() {
+  const number = document.getElementById("gameNumber");
+  const status = document.getElementById("gameStatus");
+  const button = document.getElementById("gameButton");
+
+  if (!number || !status || !button) return;
+
+  if (!gameReady) {
+    if (gameTimer) clearTimeout(gameTimer);
+    gameReady = false;
+    number.textContent = "EARLY!";
+    number.style.color = "#ff7676";
+    status.textContent = "Слишком рано! Попробуй ещё раз.";
+  } else {
+    const reaction = Date.now() - gameStart;
+    number.textContent = reaction + " ms";
+    number.style.color = "#00eaff";
+    status.textContent = "Твоя скорость реакции!";
+  }
+
+  gameReady = false;
+  button.textContent = "ЕЩЁ РАЗ";
+  button.onclick = startGame;
+}
+
 </script>
 </body>
 </html>
