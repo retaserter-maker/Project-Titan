@@ -1,0 +1,365 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#050b14">
+<title>PROJECT TITAN</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #050b14;
+  color: #e5f3ff;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% 0%, #12385a55, transparent 45%),
+    linear-gradient(#0b1a2b22 1px, transparent 1px),
+    linear-gradient(90deg, #0b1a2b22 1px, transparent 1px);
+  background-size: auto, 35px 35px, 35px 35px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #16456a;
+  background: #07111de8;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: #38bdf8;
+  text-shadow: 0 0 15px #0ea5e9;
+}
+
+.status {
+  color: #4ade80;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 30px 18px;
+}
+
+.welcome {
+  text-align: center;
+  padding: 35px 10px;
+  animation: appear 1s ease;
+}
+
+.welcome h1 {
+  font-size: clamp(30px, 8vw, 55px);
+  letter-spacing: 5px;
+  color: #7dd3fc;
+  text-shadow: 0 0 25px #0284c7;
+}
+
+.welcome p {
+  color: #8baac4;
+  margin-top: 12px;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+.orb {
+  width: 115px;
+  height: 115px;
+  margin: 25px auto;
+  border-radius: 50%;
+  border: 2px solid #38bdf8;
+  box-shadow: 0 0 25px #0284c7,
+              inset 0 0 25px #0284c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+  animation: pulse 3s infinite;
+}
+
+.clock {
+  color: #38bdf8;
+  font-size: 19px;
+  margin-top: 18px;
+  letter-spacing: 2px;
+}
+
+.section-title {
+  font-size: 15px;
+  color: #7dd3fc;
+  letter-spacing: 2px;
+  margin: 25px 0 15px;
+}
+
+.modules {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.module {
+  border: 1px solid #16456a;
+  border-radius: 14px;
+  padding: 22px 14px;
+  background: linear-gradient(145deg, #102238, #07111d);
+  text-align: center;
+  cursor: pointer;
+  transition: .3s;
+  color: white;
+  min-height: 175px;
+}
+
+.module:hover {
+  transform: translateY(-5px);
+  border-color: #38bdf8;
+  box-shadow: 0 0 22px #0284c755;
+}
+
+.module .icon {
+  font-size: 35px;
+  margin-bottom: 15px;
+}
+
+.module h2 {
+  font-size: 16px;
+  color: #7dd3fc;
+  margin-bottom: 10px;
+}
+
+.module p {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #91a9bf;
+}
+
+.system {
+  margin-top: 25px;
+  padding: 18px;
+  background: #0b1929;
+  border: 1px solid #16456a;
+  border-radius: 12px;
+}
+
+.system h3 {
+  color: #38bdf8;
+  margin-bottom: 13px;
+  font-size: 14px;
+}
+
+.system p {
+  color: #9db4c9;
+  font-size: 12px;
+  margin: 8px 0;
+}
+
+.online {
+  color: #4ade80;
+}
+
+footer {
+  text-align: center;
+  padding: 30px 10px;
+  color: #526b82;
+  font-size: 11px;
+}
+
+#message {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #000b;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 10;
+}
+
+.dialog {
+  background: #0b1929;
+  border: 1px solid #38bdf8;
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  max-width: 330px;
+  width: 100%;
+  box-shadow: 0 0 30px #0284c755;
+}
+
+.dialog h2 {
+  color: #38bdf8;
+  margin-bottom: 12px;
+}
+
+.dialog p {
+  color: #a7bfd4;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.dialog button {
+  margin-top: 20px;
+  background: #0284c7;
+  color: white;
+  border: none;
+  border-radius: 7px;
+  padding: 11px 25px;
+  font-size: 14px;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 15px #0284c7,
+                inset 0 0 15px #0284c7;
+  }
+  50% {
+    box-shadow: 0 0 35px #0ea5e9,
+                inset 0 0 30px #0284c7;
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media(max-width: 600px) {
+  .modules {
+    grid-template-columns: 1fr;
+  }
+
+  .module {
+    min-height: 145px;
+  }
+
+  header {
+    padding: 16px;
+  }
+
+  .logo {
+    font-size: 19px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">TITAN</div>
+  <div class="status">● СИСТЕМА АКТИВНА</div>
+</header>
+
+<main>
+
+  <section class="welcome">
+    <h1>PROJECT TITAN</h1>
+    <p>СИСТЕМА ЦИФРОВОГО УПРАВЛЕНИЯ</p>
+
+    <div class="orb">✦</div>
+
+    <p>ДОБРО ПОЖАЛОВАТЬ В TITAN</p>
+    <div class="clock" id="clock">00:00:00</div>
+  </section>
+
+  <h2 class="section-title">ГЛАВНЫЕ МОДУЛИ</h2>
+
+  <section class="modules">
+
+    <div class="module" onclick="openModule('JARVIS AI')">
+      <div class="icon">🤖</div>
+      <h2>JARVIS AI</h2>
+      <p>Искусственный интеллект и голосовой помощник</p>
+    </div>
+
+    <div class="module" onclick="openModule('DIGITAL EARTH')">
+      <div class="icon">🌍</div>
+      <h2>DIGITAL EARTH</h2>
+      <p>Интерактивная цифровая модель Земли</p>
+    </div>
+
+    <div class="module" onclick="openModule('SPEED RACER')">
+      <div class="icon">🏎️</div>
+      <h2>SPEED RACER</h2>
+      <p>Гонки, автомобили и соревнования</p>
+    </div>
+
+  </section>
+
+  <section class="system">
+    <h3>МОНИТОРИНГ TITAN CORE</h3>
+    <p>Состояние системы: <span class="online">ONLINE</span></p>
+    <p>Главные модули: 3</p>
+    <p>Версия системы: 1.0.0</p>
+    <p>Платформа: Web / Android</p>
+  </section>
+
+</main>
+
+<footer>
+  PROJECT TITAN © 2026<br>
+  THE FUTURE STARTS HERE
+</footer>
+
+<div id="message">
+  <div class="dialog">
+    <h2 id="dialogTitle">TITAN</h2>
+    <p id="dialogText">Модуль готовится к запуску.</p>
+    <button onclick="closeModule()">ЗАКРЫТЬ</button>
+  </div>
+</div>
+
+<script>
+function updateClock() {
+  const now = new Date();
+
+  document.getElementById("clock").textContent =
+    now.toLocaleTimeString("ru-RU");
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+function openModule(name) {
+  document.getElementById("dialogTitle").textContent = name;
+  document.getElementById("dialogText").textContent =
+    "Модуль " + name +
+    " зарегистрирован. Полноценный запуск появится в следующих обновлениях PROJECT TITAN.";
+
+  document.getElementById("message").style.display = "flex";
+}
+
+function closeModule() {
+  document.getElementById("message").style.display = "none";
+}
+</script>
+
+</body>
+</html>
